@@ -1,0 +1,47 @@
+package mirza.opu.reverserecyclerview;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+
+    ArrayList<String> arrayList;
+
+    public MainAdapter(ArrayList<String> arrayList){
+        this.arrayList = arrayList;
+    }
+
+    @NonNull
+    @Override
+    public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
+        int reverseIndex = arrayList.size() - 1 - position;
+        holder.textView.setText(arrayList.get(reverseIndex));
+    }
+
+    @Override
+    public int getItemCount() {
+        return arrayList.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView textView;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textView = itemView.findViewById(android.R.id.text1);
+        }
+    }
+}
